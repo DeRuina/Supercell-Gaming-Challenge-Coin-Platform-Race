@@ -11,6 +11,8 @@ class Game
       sf::RenderWindow *window;
       sf::Event event;
       bool gameEnd;
+      float xVelocity;
+      float yVelocity;
 
       std::vector<Coins> coins;
       float coinTimerMax;
@@ -34,6 +36,7 @@ class Game
       const bool running() const;
       void pollEvents();
       void spawnCoins();
+      void updateCoins();
       void update();
       void render();
 

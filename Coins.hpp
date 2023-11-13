@@ -11,18 +11,20 @@
 class Coins
 {
   private:
-  sf::CircleShape coin;
-
-  void initCoin();
+      sf::CircleShape coin;
+      sf::Vector2f position;
+      
+      void initCoin(const sf::RenderWindow &window);
 
 
   public:
     //constructions
-    Coins();
+    Coins(const sf::RenderWindow &window);
     virtual ~Coins();
 
 
-    //Getters
+    //Setters
+    void setCoinPosition(float &x, float &y);
 
 
     //Functions
