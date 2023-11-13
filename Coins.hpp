@@ -7,6 +7,8 @@
 #include <iostream>
 #include <ctime>
 
+enum CoinType {DEFAULT = 0, POINTS5, MINUS10, NBROFTYPES};
+
 class Coins
 {
   private:
@@ -14,6 +16,7 @@ class Coins
       sf::Vector2f position;
       float xVelocity;
       float yVelocity;
+      int type;
 
       
       void initCoin(const sf::RenderWindow &window);
@@ -22,16 +25,17 @@ class Coins
 
   public:
     //constructions
-    Coins(const sf::RenderWindow &window);
+    Coins(const sf::RenderWindow &window, int type);
     virtual ~Coins();
 
 
     //Getters
+    float &getxVelocity();
+    float &getyVelocity();
+    int &getType();
 
     //Setters
     void setCoinPosition(float &x, float &y);
-    float &getxVelocity();
-    float &getyVelocity();
 
 
     //Functions

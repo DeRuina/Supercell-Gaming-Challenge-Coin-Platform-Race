@@ -17,9 +17,10 @@ void Coins::initCoin(const sf::RenderWindow &window)
 }
 
 
-Coins::Coins(const sf::RenderWindow &window)
+Coins::Coins(const sf::RenderWindow &window, int type)
 {
 	this->initCoin(window);
+  this->type = type;
 }
 
 Coins::~Coins()
@@ -50,6 +51,11 @@ float &Coins::getxVelocity()
 float &Coins::getyVelocity()
 {
 	return (this->yVelocity);
+}
+
+int &Coins::getType()
+{
+  return(this->type);
 }
 
 void Coins::update()
