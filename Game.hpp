@@ -14,6 +14,7 @@ class Game
       sf::Event event;
       bool gameEnd;
       Player player1;
+      Player player2;
       int pointsPlayer1;
       int pointsPlayer2;
 
@@ -40,6 +41,10 @@ class Game
       //Getters
       int &getPlayer1Points();
       int &getPlayer2Points();
+
+      //Setter
+      void setPlayer1(Player &player);
+      void setPlayer2(Player &player);
 
 
       //Functions

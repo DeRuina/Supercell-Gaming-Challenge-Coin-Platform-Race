@@ -7,7 +7,7 @@
 #include <iostream>
 #include <ctime>
 
-enum CoinType {DEFAULT = 0, POINTS5, MINUS10, NBROFTYPES};
+enum CoinType {DEFAULT = 0, POINTS5, MINUS3, NBROFTYPES};
 
 class Coins
 {
@@ -20,7 +20,6 @@ class Coins
 
       
       void initCoin(const sf::RenderWindow &window);
-      void initText();
 
 
   public:

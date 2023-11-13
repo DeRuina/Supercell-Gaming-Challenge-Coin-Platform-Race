@@ -5,17 +5,25 @@ void Player::initVariables()
 	this->moveSpeed = 10.f;
 }
 
-void Player::initShape()
+void Player::initShape(int i)
 {
-	this->playerShape.setFillColor(sf::Color::Blue);
-	this->playerShape.setSize(sf::Vector2f(60.f, 100.f));
+  if (i == 0)
+  {
+	  this->playerShape.setFillColor(sf::Color::Blue);
+	  this->playerShape.setSize(sf::Vector2f(60.f, 100.f));
+  }
+  else
+  {
+    this->playerShape.setFillColor(sf::Color::Magenta);
+	  this->playerShape.setSize(sf::Vector2f(60.f, 100.f));
+  }
 }
 
-Player::Player(float x, float y)
+Player::Player(float x, float y, int i)
 {
 	this->playerShape.setPosition(x, y);
 	this->initVariables();
-	this->initShape();
+	this->initShape(i);
 }
 
 Player::~Player()
@@ -27,18 +35,34 @@ sf::RectangleShape &Player::getPlayer()
   return(this->playerShape);
 }
 
-void Player::updateInput()
+void Player::updateInput(int i)
 {
   //Movemnt
 	//left
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-    this->playerShape.move(-this->moveSpeed, 0.f);
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-    this->playerShape.move(this->moveSpeed, 0.f);
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-    this->playerShape.move(0.f, -this->moveSpeed);
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-    this->playerShape.move(0.f, this->moveSpeed);
+  if (i == 0)
+  {
+	  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+      this->playerShape.move(-this->moveSpeed, 0.f);
+	  else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+      this->playerShape.move(this->moveSpeed, 0.f);
+	  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+      this->playerShape.move(0.f, -this->moveSpeed);
+	  else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+      this->playerShape.move(0.f, this->moveSpeed);
+  }
+  else
+  {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+      this->playerShape.move(-this->moveSpeed, 0.f);
+	  else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+      this->playerShape.move(this->moveSpeed, 0.f);
+	  if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+      this->playerShape.move(0.f, -this->moveSpeed);
+	  else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+      this->playerShape.move(0.f, this->moveSpeed);
+
+  }
+
 }
 
 void Player::updateBoundsCollision(sf::RenderTarget &target)
@@ -54,9 +78,9 @@ void Player::updateBoundsCollision(sf::RenderTarget &target)
 		this->playerShape.setPosition(this->playerShape.getGlobalBounds().left, 720 - this->playerShape.getGlobalBounds().height);
 }
 
-void Player::update(sf::RenderTarget &target)
+void Player::update(sf::RenderTarget &target, int i)
 {
-	this->updateInput();
+	this->updateInput(i);
   this->updateBoundsCollision(target);
 }
 

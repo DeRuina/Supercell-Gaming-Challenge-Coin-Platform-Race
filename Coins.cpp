@@ -3,8 +3,22 @@
 void Coins::initCoin(const sf::RenderWindow &window)
 {
 	this->coin.setRadius(30.f);
-	sf::Color yellow(255, 255, 0);
-	this->coin.setFillColor(yellow);
+  sf::Color color;
+  switch (this->type)
+  {
+  case CoinType::DEFAULT:
+      color = sf::Color::Yellow;
+      break;
+  case CoinType::POINTS5:
+      color = sf::Color::Yellow;
+      this->coin.setOutlineColor(sf::Color::Green);
+      this->coin.setOutlineThickness(5);
+      break;
+  case CoinType::MINUS3:
+    color = sf::Color::Red;
+    break;
+  }
+	this->coin.setFillColor(color);
 	this->position.x = static_cast<float>(rand() % (window.getSize().x
 				- static_cast<int>(this->coin.getGlobalBounds().width)));
 	this->position.y = static_cast<float>(rand() % (window.getSize().y
@@ -19,8 +33,8 @@ void Coins::initCoin(const sf::RenderWindow &window)
 
 Coins::Coins(const sf::RenderWindow &window, int type)
 {
-	this->initCoin(window);
   this->type = type;
+	this->initCoin(window);
 }
 
 Coins::~Coins()

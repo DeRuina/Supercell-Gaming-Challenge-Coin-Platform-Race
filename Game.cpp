@@ -24,6 +24,16 @@ int &Game::getPlayer2Points()
 	return (this->pointsPlayer2);
 }
 
+void Game::setPlayer1(Player &player)
+{
+  this->player1 = player;
+}
+
+void Game::setPlayer2(Player &player)
+{
+  this->player2 = player;
+}
+
 void Game::initVariables()
 {
 	this->gameEnd = false;
@@ -117,7 +127,34 @@ void Game::updateCollision()
 	{
 		if (this->player1.getPlayer().getGlobalBounds().intersects(this->coins[i].getCoin().getGlobalBounds()))
 		{
-			this->gainPoints(1, 1);
+      switch (this->coins[i].getType())
+      {
+          case CoinType::DEFAULT:
+            this->gainPoints(1, 1);
+            break;
+          case CoinType::POINTS5:
+            this->gainPoints(5, 1);
+            break;
+          case CoinType::MINUS3:
+            this->gainPoints(-3, 1);
+            break;
+      }
+			this->coins.erase(this->coins.begin() + i);
+		}
+    if (this->player2.getPlayer().getGlobalBounds().intersects(this->coins[i].getCoin().getGlobalBounds()))
+		{
+      switch (this->coins[i].getType())
+      {
+          case CoinType::DEFAULT:
+            this->gainPoints(1, 2);
+            break;
+          case CoinType::POINTS5:
+            this->gainPoints(5, 2);
+            break;
+          case CoinType::MINUS3:
+            this->gainPoints(-3, 2);
+            break;
+      }
 			this->coins.erase(this->coins.begin() + i);
 		}
 	}
@@ -135,7 +172,8 @@ void Game::update()
 	this->pollEvents();
 	this->spawnCoins();
 	this->updateCoins();
-	this->player1.update(*this->window);
+	this->player1.update(*this->window, 0);
+	this->player2.update(*this->window, 1);
 	this->updateCollision();
 	this->updateText();
 }
@@ -153,6 +191,7 @@ void Game::render()
 		i.render(*this->window);
 	}
 	this->player1.render(*this->window);
+	this->player2.render(*this->window);
 	this->renderText(*this->window);
 	this->window->display();
 }
