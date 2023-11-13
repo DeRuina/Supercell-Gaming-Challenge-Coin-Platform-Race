@@ -37,6 +37,7 @@ class Game
       void pollEvents();
       void spawnCoins();
       void updateCoins();
+      void updateCollision();
       void update();
       void render();
 

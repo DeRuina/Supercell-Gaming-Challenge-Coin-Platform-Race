@@ -61,4 +61,7 @@ void Coins::render(sf::RenderTarget &target)
 	target.draw(this->coin);
 }
 
-
+sf::CircleShape &Coins::getCoin()
+{
+  return(this->coin);
+}

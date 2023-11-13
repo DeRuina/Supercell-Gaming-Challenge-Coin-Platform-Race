@@ -37,7 +37,7 @@ class Coins
     //Functions
     void update();
     void render(sf::RenderTarget &target);
-    void increaseValue();
-    void decreaseValue();
+    sf::CircleShape &getCoin();
+
 
 };

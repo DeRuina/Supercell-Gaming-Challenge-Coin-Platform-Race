@@ -23,6 +23,7 @@ class Player
 
 
     //Functions
+    sf::RectangleShape &getPlayer();
     void updateInput();
     void update(sf::RenderTarget &target);
     void render(sf::RenderTarget &target);

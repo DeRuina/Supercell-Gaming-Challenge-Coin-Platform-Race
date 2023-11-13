@@ -22,6 +22,11 @@ Player::~Player()
 {
 }
 
+sf::RectangleShape &Player::getPlayer()
+{
+  return(this->playerShape);
+}
+
 void Player::updateInput()
 {
   //Movemnt

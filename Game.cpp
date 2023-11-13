@@ -67,10 +67,21 @@ void Game::spawnCoins()
 
 void Game::updateCoins()
 {
-  for (int i = 0; i < this->coins.size(); i++)
+	for (int i = 0; i < this->coins.size(); i++)
+	{
+		this->coins[i].setCoinPosition(this->coins[i].getxVelocity(),
+				this->coins[i].getyVelocity());
+	}
+}
+
+void Game::updateCollision()
+{
+  for (size_t i = 0; i < this->coins.size(); i++)
   {
-    this->coins[i].setCoinPosition(this->coins[i].getxVelocity(), this->coins[i].getyVelocity());
+    if (this->player1.getPlayer().getGlobalBounds().intersects(this->coins[i].getCoin().getGlobalBounds()))
+      this->coins.erase(this->coins.begin() + i);
   }
+  
 }
 
 void Game::update()
@@ -78,7 +89,8 @@ void Game::update()
 	this->pollEvents();
 	this->spawnCoins();
 	this->updateCoins();
-  this->player1.update(*this->window);
+	this->player1.update(*this->window);
+  this->updateCollision();
 }
 
 void Game::render()
@@ -88,6 +100,6 @@ void Game::render()
 	{
 		i.render(*this->window);
 	}
-  this->player1.render(*this->window);
+	this->player1.render(*this->window);
 	this->window->display();
 }
