@@ -24,6 +24,11 @@ int &Game::getPlayer2Points()
 	return (this->pointsPlayer2);
 }
 
+bool &Game::getEndGame()
+{
+  return (this->gameEnd);
+}
+
 void Game::setPlayer1(Player &player)
 {
   this->player1 = player;
@@ -38,8 +43,9 @@ void Game::initVariables()
 {
 	this->gameEnd = false;
 	this->coinTimerMax = 10.f;
+  this->redCoinTimerMax = 50.f;
 	this->coinTimer = this->coinTimerMax;
-	this->maxCoins = 10;
+	this->maxCoins = 12;
 	this->pointsPlayer1 = 0;
 	this->pointsPlayer2 = 0;
 }
@@ -129,6 +135,8 @@ void Game::updateCollision()
 {
 	for (size_t i = 0; i < this->coins.size(); i++)
 	{
+    if (this->coins[i].getType() == MINUS3 && this->coinTimer == this->redCoinTimerMax)
+      this->coins.erase(this->coins.begin() + i);
 		if (this->player1.getPlayer().getGlobalBounds().intersects(this->coins[i].getCoin().getGlobalBounds()))
 		{
       switch (this->coins[i].getType())
@@ -174,6 +182,7 @@ void Game::updateText()
   this->txt2.setString(ss2.str());
 }
 
+
 void Game::update()
 {
 	this->pollEvents();
@@ -183,6 +192,10 @@ void Game::update()
 	this->player2.update(*this->window, 1);
 	this->updateCollision();
 	this->updateText();
+  if (this->getPlayer1Points() >= 150)
+    window->close();
+  else if (this->getPlayer2Points() >= 150)
+    window->close();
 }
 
 void Game::renderText(sf::RenderTarget &target)

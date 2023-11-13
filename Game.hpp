@@ -21,7 +21,9 @@ class Game
       std::vector<Coins> coins;
       float coinTimerMax;
       float coinTimer;
+      float redCoinTimerMax;
       int maxCoins;
+      
 
       sf::Font font;
       sf::Text txt;
@@ -42,6 +44,7 @@ class Game
       //Getters
       int &getPlayer1Points();
       int &getPlayer2Points();
+      bool &getEndGame();
 
       //Setter
       void setPlayer1(Player &player);
