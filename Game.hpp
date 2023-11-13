@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Coins.hpp"
+#include "Player.hpp"
 #include <vector>
 
 class Coins;
@@ -11,6 +12,7 @@ class Game
       sf::RenderWindow *window;
       sf::Event event;
       bool gameEnd;
+      Player player1;
 
       std::vector<Coins> coins;
       float coinTimerMax;

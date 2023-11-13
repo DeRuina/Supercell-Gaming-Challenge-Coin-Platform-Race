@@ -6,15 +6,16 @@ void Coins::initCoin(const sf::RenderWindow &window)
 	sf::Color yellow(255, 255, 0);
 	this->coin.setFillColor(yellow);
 	this->position.x = static_cast<float>(rand() % (window.getSize().x
-			- static_cast<int>(this->coin.getGlobalBounds().width)));
+				- static_cast<int>(this->coin.getGlobalBounds().width)));
 	this->position.y = static_cast<float>(rand() % (window.getSize().y
-			- static_cast<int>(this->coin.getGlobalBounds().height)));
+				- static_cast<int>(this->coin.getGlobalBounds().height)));
 	this->coin.setPosition(position);
 	this->xVelocity = (static_cast<float>(rand()) / (static_cast<float>(RAND_MAX
-				/ 4)) - 2.f) * 1.5;
+					/ 4)) - 2.f) * 1.5;
 	this->yVelocity = (static_cast<float>(rand()) / (static_cast<float>(RAND_MAX
-				/ 4)) - 2.f) * 1.5;
+					/ 4)) - 2.f) * 1.5;
 }
+
 
 Coins::Coins(const sf::RenderWindow &window)
 {
@@ -43,12 +44,12 @@ void Coins::setCoinPosition(float &x, float &y)
 
 float &Coins::getxVelocity()
 {
-  return(this->xVelocity);
+	return (this->xVelocity);
 }
 
 float &Coins::getyVelocity()
 {
-  return(this->yVelocity);
+	return (this->yVelocity);
 }
 
 void Coins::update()
@@ -59,3 +60,5 @@ void Coins::render(sf::RenderTarget &target)
 {
 	target.draw(this->coin);
 }
+
+

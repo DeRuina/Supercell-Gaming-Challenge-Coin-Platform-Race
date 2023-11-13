@@ -1,16 +1,21 @@
 #pragma once
 
-#include "Game.hpp"
+#include "Coins.hpp"
 
 
 class Player
 {
   private:
+      sf::RectangleShape playerShape;
+      float moveSpeed;
+
+      void initVariables();
+      void initShape();
 
 
   public:
     //constructions
-    Player();
+    Player(float x = 0.f, float y = 0.f);
     virtual ~Player();
 
 
@@ -18,5 +23,9 @@ class Player
 
 
     //Functions
+    void updateInput();
+    void update(sf::RenderTarget &target);
+    void render(sf::RenderTarget &target);
+    void updateBoundsCollision(sf::RenderTarget &target);
 
 };

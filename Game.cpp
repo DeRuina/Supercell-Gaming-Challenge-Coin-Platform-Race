@@ -1,4 +1,5 @@
 #include "Game.hpp"
+#include "Player.hpp"
 
 Game::Game()
 {
@@ -16,7 +17,7 @@ void Game::initVariables()
 	this->gameEnd = false;
 	this->coinTimerMax = 10.f;
 	this->coinTimer = this->coinTimerMax;
-	this->maxCoins = 3;
+	this->maxCoins = 10;
 }
 
 void Game::initWindow()
@@ -77,6 +78,7 @@ void Game::update()
 	this->pollEvents();
 	this->spawnCoins();
 	this->updateCoins();
+  this->player1.update(*this->window);
 }
 
 void Game::render()
@@ -86,6 +88,6 @@ void Game::render()
 	{
 		i.render(*this->window);
 	}
-
+  this->player1.render(*this->window);
 	this->window->display();
 }

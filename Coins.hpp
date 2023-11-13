@@ -6,7 +6,6 @@
 #include <SFML/Network.hpp>
 #include <iostream>
 #include <ctime>
-#include "Player.hpp"
 
 class Coins
 {
@@ -18,6 +17,7 @@ class Coins
 
       
       void initCoin(const sf::RenderWindow &window);
+      void initText();
 
 
   public:
@@ -37,5 +37,7 @@ class Coins
     //Functions
     void update();
     void render(sf::RenderTarget &target);
+    void increaseValue();
+    void decreaseValue();
 
 };
