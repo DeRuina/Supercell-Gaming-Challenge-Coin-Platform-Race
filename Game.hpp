@@ -25,6 +25,7 @@ class Game
 
       sf::Font font;
       sf::Text txt;
+      sf::Text txt2;
 
 
       void initVariables();

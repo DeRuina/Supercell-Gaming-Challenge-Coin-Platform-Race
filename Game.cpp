@@ -47,7 +47,7 @@ void Game::initVariables()
 void Game::initWindow()
 {
 	this->window = new sf::RenderWindow(sf::VideoMode(1280, 720),
-										"Slime Platformer Wars",
+										"Coin Platform Race",
 										sf::Style::Close | sf::Style::Titlebar);
 	this->window->setFramerateLimit(60);
 }
@@ -61,9 +61,13 @@ void Game::initFont()
 void Game::initText()
 {
 	this->txt.setFont(this->font);
+	this->txt2.setFont(this->font);
 	this->txt.setFillColor(sf::Color::White);
+	this->txt2.setFillColor(sf::Color::White);
 	this->txt.setCharacterSize(32);
-	this->txt.setPosition(sf::Vector2f(10.f, 10.f));
+	this->txt2.setCharacterSize(32);
+	this->txt.setPosition(sf::Vector2f(0.f, 0.f));
+	this->txt2.setPosition(sf::Vector2f(0.f, 50.f));
 }
 
 void Game::gainPoints(int points, int player)
@@ -163,8 +167,11 @@ void Game::updateCollision()
 void Game::updateText()
 {
   std::stringstream ss;
+  std::stringstream ss2;
   ss << "Player 1 points: " << this->getPlayer1Points() << "\n";
 	this->txt.setString(ss.str());
+  ss2 << "Player 2 points: " << this->getPlayer2Points() << "\n";
+  this->txt2.setString(ss2.str());
 }
 
 void Game::update()
@@ -181,6 +188,7 @@ void Game::update()
 void Game::renderText(sf::RenderTarget &target)
 {
 	target.draw(this->txt);
+  target.draw(this->txt2);
 }
 
 void Game::render()
