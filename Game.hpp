@@ -1,13 +1,9 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
-#include <SFML/System.hpp>
-#include <SFML/Window.hpp>
-#include <SFML/Audio.hpp>
-#include <SFML/Network.hpp>
-#include <iostream>
-#include <ctime>
+#include "Coins.hpp"
+#include <vector>
 
+class Coins;
 
 class Game
 {
@@ -15,6 +11,11 @@ class Game
       sf::RenderWindow *window;
       sf::Event event;
       bool gameEnd;
+
+      std::vector<Coins> coins;
+      float coinTimerMax;
+      float coinTimer;
+      int maxCoins;
 
 
       void initVariables();
@@ -26,13 +27,14 @@ class Game
       Game();
       virtual ~Game();
 
-      //Getter
+      //Getters
 
 
       //Functions
-      void update();
-      void render();
       const bool running() const;
       void pollEvents();
+      void spawnCoins();
+      void update();
+      void render();
 
 };

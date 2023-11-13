@@ -1,6 +1,6 @@
 NAME = program
 
-SRC = main.cpp Game.cpp
+SRC = main.cpp Game.cpp Coins.cpp Player.cpp
 
 FLAGS = -O3 -std=c++17 
 

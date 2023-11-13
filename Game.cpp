@@ -14,12 +14,17 @@ Game::~Game()
 void Game::initVariables()
 {
 	this->gameEnd = false;
+	this->coinTimerMax = 10.f;
+	this->coinTimer = this->coinTimerMax;
+	this->maxCoins = 2;
 }
 
 void Game::initWindow()
 {
-	this->window = new sf::RenderWindow(sf::VideoMode(800, 600),
-	"Slime Platformer Wars", sf::Style::Close | sf::Style::Titlebar);
+	this->window = new sf::RenderWindow(sf::VideoMode(1300, 900),
+										"Slime Platformer Wars",
+										sf::Style::Close | sf::Style::Titlebar);
+	this->window->setFramerateLimit(144);
 }
 
 const bool Game::running() const
@@ -29,29 +34,49 @@ const bool Game::running() const
 
 void Game::pollEvents()
 {
-  while(this->window->pollEvent(this->event))
-  {
-    switch (this->event.type)
+	while (this->window->pollEvent(this->event))
+	{
+		switch (this->event.type)
 		{
-		  case sf::Event::Closed:
-			    this->window->close();
-			    break;
-		  case sf::Event::KeyPressed:
-			    if (this->event.key.code == sf::Keyboard::Escape)
-				    this->window->close();
-			      break;
+		case sf::Event::Closed:
+			this->window->close();
+			break ;
+		case sf::Event::KeyPressed:
+			if (this->event.key.code == sf::Keyboard::Escape)
+				this->window->close();
+			break ;
 		}
+	}
+}
+
+void Game::spawnCoins()
+{
+  //Timer
+  if (this->coinTimer < this->coinTimerMax)
+    this->coinTimer += 1.f;
+  else
+  {
+    if (this->coins.size() < this->maxCoins)
+    {
+      this->coins.push_back(Coins());
+      this->coinTimer = 0.f;
+    }
   }
 }
 
 void Game::update()
 {
-  this->pollEvents();
+	this->pollEvents();
+  this->spawnCoins();
 }
 
 void Game::render()
 {
-  this->window->clear();
-  // this->window->draw();
-  this->window->display();
+	this->window->clear();
+  for(auto i : this->coins)
+  {
+    i.render(*this->window);
+  }
+
+	this->window->display();
 }
