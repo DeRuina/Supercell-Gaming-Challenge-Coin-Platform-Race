@@ -11,6 +11,9 @@ class Game
 {
   private: 
       sf::RenderWindow *window;
+      sf::RectangleShape rec1;
+      sf::RectangleShape rec2;
+      sf::RectangleShape rec3;
       sf::Event event;
       bool gameEnd;
       Player player1;
@@ -34,6 +37,7 @@ class Game
       void initWindow();
       void initFont();
       void initText();
+      void initRec();
 
 
   public:
@@ -61,6 +65,7 @@ class Game
       void updateText();
       void update();
       void renderText(sf::RenderTarget &target);
+      void renderPlatforms(sf::RenderTarget &target);
       void render();
 
 };

@@ -19,10 +19,6 @@ class Player
     virtual ~Player();
 
 
-    //Setters
-
-
-
     //Functions
     sf::RectangleShape &getPlayer();
     void updateInput(int i);
