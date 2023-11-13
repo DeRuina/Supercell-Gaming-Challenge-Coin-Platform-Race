@@ -13,6 +13,9 @@ class Coins
   private:
       sf::CircleShape coin;
       sf::Vector2f position;
+      float xVelocity;
+      float yVelocity;
+
       
       void initCoin(const sf::RenderWindow &window);
 
@@ -23,8 +26,12 @@ class Coins
     virtual ~Coins();
 
 
+    //Getters
+
     //Setters
     void setCoinPosition(float &x, float &y);
+    float &getxVelocity();
+    float &getyVelocity();
 
 
     //Functions

@@ -11,8 +11,6 @@ class Game
       sf::RenderWindow *window;
       sf::Event event;
       bool gameEnd;
-      float xVelocity;
-      float yVelocity;
 
       std::vector<Coins> coins;
       float coinTimerMax;

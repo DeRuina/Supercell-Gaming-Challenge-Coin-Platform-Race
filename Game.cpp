@@ -17,8 +17,6 @@ void Game::initVariables()
 	this->coinTimerMax = 10.f;
 	this->coinTimer = this->coinTimerMax;
 	this->maxCoins = 3;
-  this->xVelocity = 2.f;
-  this->yVelocity = 2.f;
 }
 
 void Game::initWindow()
@@ -70,7 +68,7 @@ void Game::updateCoins()
 {
   for (int i = 0; i < this->coins.size(); i++)
   {
-    this->coins[i].setCoinPosition(xVelocity, yVelocity);
+    this->coins[i].setCoinPosition(this->coins[i].getxVelocity(), this->coins[i].getyVelocity());
   }
 }
 
