@@ -1,8 +1,8 @@
-NAME = program
+NAME = Coin_Race
 
 SRC = main.cpp Game.cpp Coins.cpp Player.cpp
 
-FLAGS = -O3 -std=c++17 
+FLAGS = -O3 -std=c++17
 
 .PHONY: all clean fclean re
 
