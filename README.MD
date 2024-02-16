@@ -1,5 +1,5 @@
 # SUPERCELL Game Challenge
-Had 12 hours to make a game with a topic and bugged structure SUPERCELL provided us with. This is the game I was able to make, the subject was making a platformer game.
+Developed a platformer game within a tight 12-hour timeframe, adhering to predefined guidelines provided by SUPERCELL. Leveraged SFML library to enhance game functionality and aesthetics, demonstrating ability to work under pressure and deliver quality results efficiently.
 
 # Coin Platform Race
 
